@@ -8,8 +8,11 @@ from openpyxl import load_workbook
 
 from archive import create_archive, move_archive
 
-create_archive()
-move_archive()
+if os.path.exists('./resources/archive.zip'):
+    pass
+else:
+    create_archive()
+    move_archive()
 
 def test_archived_csv():
     with zipfile.ZipFile(os.path.abspath('./resources/archive.zip')) as test_archive:
@@ -34,6 +37,5 @@ def test_archived_pdf():
             test_pdf = PdfReader(test_pdf)
             num_pages = len(test_pdf.pages)
             assert num_pages == 96
-
 
 
